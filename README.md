@@ -1,7 +1,9 @@
 # EyuX Share API
 
 This repository contains the serverless backend for the **EyuX AI Assistant** Android app. Its purpose is to provide a simple, secure, and reliable way for users to share their conversations via a unique web link.
-
+ 
+ ![Demo](assets/Demo.gif) 
+ 
 ## How It Works
 
 This API is built on the Vercel serverless platform and leverages Vercel KV (powered by Upstash Redis) for temporary data storage.
