@@ -1,0 +1,156 @@
+<!doctypehtml><html lang=en><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><link href=favicon.png rel=icon type=image/png><title>EyuX Chat Viewer</title><meta content=website property=og:type><meta content=[PAGE_URL] property=og:url><meta content="EyuX - Chat Share"property=og:title><meta content="Shared via EyuX AI"property=og:description><meta content=https://raw.githubusercontent.com/Eul45/EyuXShareLink/643d29d4e4c6f0db76676dec23d8e401a5197894/icon.png property=og:image><meta content=summary name=twitter:card><meta content=[PAGE_URL] name=twitter:url><meta content="EyuX - Chat Share"name=twitter:title><meta content="Shared via EyuX AI"name=twitter:description><meta content=https://raw.githubusercontent.com/Eul45/EyuXShareLink/643d29d4e4c6f0db76676dec23d8e401a5197894/icon.png name=twitter:image><script src=https://cdn.jsdelivr.net/npm/marked/marked.min.js></script><script src=https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js></script><style>:root,body[data-theme=dark]{--bg-color:#121212;--container-bg:#1c1c1c;--text-color:#EAEAEA;--text-muted:#888;--border-color:#333;--bot-bubble-bg:#1c1c1c;--user-bubble-bg:#333333;--placeholder-bg:#3a3a3a;--header-text:#FFFFFF;--link-color:#58a6ff}body[data-theme=light]{--bg-color:#f0f2f5;--container-bg:#ffffff;--text-color:#1c1c1e;--text-muted:#65676b;--border-color:#e0e0e0;--bot-bubble-bg:#FFFFFF;--user-bubble-bg:#f5f5f5;--placeholder-bg:#e5e5ea;--header-text:#1c1c1e;--link-color:#007AFF}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background-color:var(--bg-color);color:var(--text-color);margin:0;padding:15px;transition:background-color .3s,color .3s}.chat-container{max-width:800px;margin:0 auto;border:1px solid var(--border-color);border-radius:12px;padding:20px;background-color:var(--container-bg);transition:background-color .3s,border-color .3s}.header{position:relative;text-align:center;border-bottom:1px solid var(--border-color);padding-bottom:15px;margin-bottom:25px;transition:border-color .3s}.header h1{margin:0;font-size:24px;color:var(--header-text);transition:color .3s}.header p{margin:5px 0 0;color:var(--text-muted);font-size:14px}.theme-switcher{position:absolute;top:-5px;right:0;background:0 0;border:none;cursor:pointer;padding:10px;border-radius:50%;display:flex;align-items:center;justify-content:center}.theme-switcher:hover{background-color:rgba(128,128,128,.1)}.theme-switcher svg{width:24px;height:24px;fill:var(--text-muted)}.icon-moon,.icon-sun{display:none}.message{display:flex;flex-direction:column;margin-bottom:20px}.bubble{padding:12px 18px;border-radius:20px;line-height:1.6;max-width:85%;overflow-wrap:break-word;border:1px solid var(--border-color);transition:background-color .3s,color .3s,border-color .3s}.user{align-items:flex-end}.user .bubble{background-color:var(--user-bubble-bg);color:var(--text-color);border-bottom-right-radius:5px}.bot{align-items:flex-start}.bot .bubble{background-color:var(--bot-bubble-bg);color:var(--text-color);border-bottom-left-radius:5px;border:none}.loading{text-align:center;font-size:18px;color:var(--text-muted);padding:40px 0}.message-image{width:100%;max-width:400px;border-radius:15px;margin-top:8px}.placeholder{display:flex;align-items:center;gap:10px;background-color:var(--placeholder-bg);padding:10px 15px;border-radius:12px;border:1px solid var(--border-color)}.placeholder-icon{font-size:24px}.placeholder-text{font-style:italic;color:var(--text-muted)}.mermaid{background-color:#fff;padding:15px;border-radius:8px;margin:10px 0;text-align:center}.bubble p{margin:0 0 10px 0}.bubble p:last-child{margin-bottom:0}.bubble pre{background-color:rgba(0,0,0,.2);padding:12px;border-radius:8px;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word;border:1px solid var(--border-color)}.bubble code{font-family:'Courier New',Courier,monospace;font-size:14px}.promo-note{text-align:center;padding:15px 10px;margin-top:30px;border-top:1px solid var(--border-color);font-size:14px;color:var(--text-muted);line-height:1.5}.promo-note a{color:var(--link-color);font-weight:600;text-decoration:none}.promo-note a:hover{text-decoration:underline}.page-footer{max-width:800px;margin:25px auto 0;padding:20px;text-align:center;color:var(--text-muted)}.footer-copyright{font-size:14px;margin-bottom:15px}.social-links{display:flex;justify-content:center;gap:20px}.social-links a{color:var(--text-muted);text-decoration:none;transition:color .2s ease-in-out}.social-links a:hover{color:var(--text-color)}.social-links svg{width:24px;height:24px;fill:currentColor}.copy-note{margin:2px00;font-size:12px;color:var(--text-muted);font-style:italic}</style><body data-theme=dark><div class=chat-container id=chat-container><div class=loading>Loading conversation...</div></div><footer class=page-footer id=page-footer></footer><script>const chatContainer = document.getElementById('chat-container');
+    const pageFooter = document.getElementById('page-footer');
+    const themeSwitch = document.createElement('button');
+    const body = document.body;
+
+    mermaid.initialize({ startOnLoad: false });
+
+    function setupThemeSwitcher() {
+        themeSwitch.className = 'theme-switcher';
+        themeSwitch.setAttribute('aria-label', 'Toggle theme');
+        themeSwitch.innerHTML = `
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.64 5.64c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L5.64 5.64zm12.73 12.73c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l1.06 1.06c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.06-1.06zM5.64 18.36l-1.06-1.06c-.39-.39-.39-1.02 0-1.41s1.02-.39 1.41 0l1.06 1.06c.39.39.39 1.02 0 1.41s-1.02.39-1.41 0zM19.43 5.64c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0l1.06-1.06z"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.1 12.08c-2.33-4.51-.5-8.48.53-10.07-1.29 1.25-2.27 2.82-2.8 4.48-1.09 3.32.16 6.55 2.27 8.66 2.11 2.11 5.33 3.35 8.65 2.27 1.66-.53 3.24-1.51 4.48-2.8-1.59 1.03-5.56 2.87-10.07.53z"/></svg>
+        `;
+        themeSwitch.addEventListener('click', switchTheme);
+    }
+
+    function applyTheme(theme) {
+        body.setAttribute('data-theme', theme);
+        const sunIcon = themeSwitch.querySelector('.icon-sun');
+        const moonIcon = themeSwitch.querySelector('.icon-moon');
+        sunIcon.style.display = theme === 'light' ? 'block' : 'none';
+        moonIcon.style.display = theme === 'dark' ? 'block' : 'none';
+    }
+
+    async function renderMermaidDiagrams() {
+        const currentTheme = body.getAttribute('data-theme');
+        mermaid.mermaidAPI.setConfig({ theme: currentTheme === 'dark' ? 'dark' : 'default' });
+        document.querySelectorAll('.mermaid[data-processed]').forEach(el => el.removeAttribute('data-processed'));
+        await mermaid.run({ nodes: document.querySelectorAll('.mermaid'), suppressErrors: true });
+    }
+
+    async function switchTheme() {
+        const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+        await renderMermaidDiagrams();
+    }
+    
+    function buildPromoBanner() {
+        const promoDiv = document.createElement('div');
+        promoDiv.className = 'promo-note';
+        promoDiv.innerHTML = `
+            This chat was shared from the EyuX AI assistant for Android.<br>
+            Don't have the app? <a href="https://eyux.en.uptodown.com/android" target="_blank" rel="noopener noreferrer">Get it here!</a>
+        `;
+        chatContainer.appendChild(promoDiv);
+    }
+    
+    function buildFooter() {
+        const currentYear = new Date().getFullYear();
+        pageFooter.innerHTML = `
+            <p class="footer-copyright">&copy; ${currentYear} EyuX AI</p>
+            <div class="social-links">
+                 <a href="https://t.me/Eul_zzz" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.62 12c-.88-.27-.88-1.37 0-1.71l15.6-6.11c.76-.3 1.45.14 1.2 1.12l-2.35 11.23c-.24 1.15-1.01 1.43-1.8 1.01l-4.52-3.33-2.14 2.05c-.23.23-.42.42-.8.42z"/></svg></a>
+                <a href="https://www.instagram.com/eyuel_eng" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c-2.717 0-3.056.01-4.122.06-1.065.05-1.79.22-2.428.46-1.29.5-2.285 1.5-2.785 2.78-.24.64-.41 1.36-.46 2.42C2.01 9.28 2 9.58 2 12s.01 2.72.06 3.78c.05 1.07.22 1.79.46 2.43.5 1.28 1.5 2.28 2.78 2.78.64.24 1.36.41 2.42.46 1.07.05 1.4.06 3.78.06s2.72-.01 3.78-.06c1.07-.05 1.79-.22 2.43-.46 1.28-.5 2.28-1.5 2.78-2.78.24-.64.41-1.36.46-2.42.05-1.07.06-1.4.06-3.78s-.01-2.72-.06-3.78c-.05-1.07-.22-1.79-.46-2.43-.5-1.28-1.5-2.28-2.78-2.78-.64-.24-1.36-.41-2.42-.46C15.056 2.01 14.717 2 12 2zm0 1.8c2.666 0 2.98.01 4.04.06 1.01.05 1.55.2 1.96.37.58.24.97.55 1.38 1 .4.4.75.8 1 1.38.17.4.32.95.37 1.96.05 1.06.06 1.37.06 4.04s-.01 2.98-.06 4.04c-.05 1.01-.2 1.55-.37 1.96-.24.58-.55.97-1 1.38-.4-.4-.8-.75-1.38-1-.4-.17-.95-.32-1.96-.37-1.06-.05-1.37-.06-4.04-.06s-2.98-.01-4.04-.06c-1.01-.05-1.55-.2-1.96-.37-.58-.24-.97-.55-1.38-1-.4-.4-.75-.8-1-1.38-.17-.4-.32-.95-.37-1.96C4.01 14.98 4 14.67 4 12s.01-2.98.06-4.04c.05-1.01.2-1.55.37-1.96.24-.58.55.97 1-1.38.4-.4.8-.75 1.38-1 .4-.17.95-.32 1.96-.37C9.02 4.01 9.33 4 12 4zm0 3.25c-2.623 0-4.75 2.127-4.75 4.75S9.377 16.75 12 16.75 16.75 14.623 16.75 12 14.623 7.25 12 7.25zm0 7.7c-1.63 0-2.95-1.32-2.95-2.95s1.32-2.95 2.95-2.95 2.95 1.32 2.95 2.95-1.32 2.95-2.95 2.95zm5.5-8.5c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25z"/></svg></a>
+                <a href="https://github.com/Eul45" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1-1 .1-1 .1-1 1.1.1 1.7 1.2 1.7 1.2.9 1.6 2.4 1.2 3 .9.1-.7.4-1.2.7-1.5-2.3-.3-4.7-1.1-4.7-5.1 0-1.1.4-2 1-2.8-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1 .8-.2 1.7-.3 2.5-.3s1.7.1 2.5.3c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.8 1 1.7 1 2.8 0 4-2.4 4.8-4.7 5.1.4.3.8.9.8 1.8v2.8c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></a>
+                <a href="https://www.linkedin.com/in/eyuel-engida-77155a317" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M21.1 0H2.9C1.3 0 0 1.3 0 2.9v18.2C0 22.7 1.3 24 2.9 24h18.2c1.6 0 2.9-1.3 2.9-2.9V2.9C24 1.3 22.7 0 21.1 0zM7.1 20.3h-3V8.9h3v11.4zM5.6 7.6c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13.1 12.7h-3V14c0-1.6-.6-2.7-2-2.7-1.1 0-1.7.7-2 1.4-.1.2-.1.5-.1.8v6.8h-3s.1-10.3 0-11.4h3v1.6c.4-.7 1.4-1.7 2.7-1.7 2 0 3.5 1.3 3.5 4.1v7.4z"/></svg></a>
+            </div>
+        `;
+    }
+    // This new function creates and adds the meta tags to the <head>
+    function updateMetaTags(chatTitle) {
+        // This gets the FULL dynamic URL of the current page
+        const pageUrl = window.location.href; 
+        const imageUrl = "https://raw.githubusercontent.com/Eul45/EyuXShareLink/643d29d4e4c6f0db76676dec23d8e401a5197894/icon.png"; 
+        const metaInfo = {
+            'og:title': `EyuX - Shared Chat`,
+            'og:description': 'Shared via EyuX AI',
+            'og:image': imageUrl,
+            'og:url': pageUrl,
+            'og:type': 'website',
+            'twitter:card': 'summary',
+            'twitter:title': `EyuX - Shared Chat`,
+            'twitter:description': 'Shared via EyuX AI',
+            'twitter:image': imageUrl
+        };
+        for (const key in metaInfo) {
+            let meta = document.createElement('meta');
+            if (key.startsWith('twitter:')) {
+                meta.setAttribute('name', key);
+            } else {
+                meta.setAttribute('property', key);
+            }
+            meta.setAttribute('content', metaInfo[key]);
+            document.getElementsByTagName('head')[0].appendChild(meta);
+        }
+    }
+
+    async function fetchAndDisplayChat() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const chatId = params.get('id');
+            if (!chatId) throw new Error("No chat ID provided.");
+
+            const response = await fetch(`https://eyux-share-api.vercel.app/api/read/${chatId}`);
+            if (!response.ok) throw new Error("Could not fetch chat data.");
+            
+            const conversation = await response.json();
+            
+            // Call the function to set the meta tags
+            updateMetaTags(conversation.title);
+
+            chatContainer.innerHTML = '';
+
+            const header = document.createElement('div');
+            header.className = 'header';
+            const timestamp = new Date(conversation.timestamp).toLocaleString();
+            header.innerHTML = `<h1>${conversation.title}</h1><p>Shared on ${timestamp}</p> <p class="copy-note">This is a copy of a conversation between EyuX & Anonymous.</p>`;
+            header.appendChild(themeSwitch);
+            chatContainer.appendChild(header);
+            
+            conversation.messages.forEach(msg => {
+                if (msg.type === 'welcome') return;
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${msg.sender}`;
+                const bubbleDiv = document.createElement('div');
+                bubbleDiv.className = 'bubble';
+                let contentHTML = '';
+
+                if (msg.type === 'image_generated' && msg.imageUri) {
+                    contentHTML = `<img src="${msg.imageUri}" alt="AI Generated Image" class="message-image">`;
+                } else if (msg.imageUri) {
+                    contentHTML = `<div class="placeholder"><span class="placeholder-icon">🖼️</span> <span class="placeholder-text">[Image Sent]</span></div>`;
+                } else if (msg.fileInfo) {
+                    contentHTML = `<div class="placeholder"><span class="placeholder-icon">📄</span> <span class="placeholder-text">[File Sent: ${msg.fileInfo.name}]</span></div>`;
+                } else if (msg.text) {
+                    const mermaidRegex = /\[CODEBLOCK:mermaid\]([\s\S]*?)\[\/CODEBLOCK\]/g;
+                    const textWithDiagrams = msg.text.replace(mermaidRegex, (match, diagramCode) => {
+                        return `<pre class="mermaid">${diagramCode.trim()}</pre>`;
+                    });
+                    contentHTML = marked.parse(textWithDiagrams);
+                } else if (msg.type === 'image_generating') {
+                     contentHTML = `<div class="placeholder"><span class="placeholder-icon">⏳</span> <span class="placeholder-text">[AI is generating an image...]</span></div>`;
+                }
+
+                bubbleDiv.innerHTML = contentHTML;
+                messageDiv.appendChild(bubbleDiv);
+                chatContainer.appendChild(messageDiv);
+            });
+            
+            await renderMermaidDiagrams();
+            buildPromoBanner(); 
+            buildFooter(); 
+            document.title = conversation.title;
+
+        } catch (error) {
+            chatContainer.innerHTML = `<div class="loading" style="color: #ff5c5c;">Error: Failed to fetch conversation.<br>(The server may be overloaded, please try again later)</div>`;
+            console.error("Failed to load chat:", error);
+        }
+    }
+
+    // --- SCRIPT EXECUTION STARTS HERE ---
+    setupThemeSwitcher();
+    applyTheme(localStorage.getItem('theme') || 'dark');
+    window.onload = fetchAndDisplayChat;</script>
