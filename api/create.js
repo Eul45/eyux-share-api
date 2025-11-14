@@ -2,20 +2,24 @@
 
 import { kv } from '@vercel/kv';
 
+const allowedOrigins = [
+  'https://eyux.vercel.app',
+  'https://eyux.netlify.app',
+];
+
 export default async function handler(request, response) {
+  const origin = request.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    response.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   // --- START: CORS Preflight Request Handling ---
-  // This part is crucial for allowing requests from your web app.
-  // It handles the browser's security check before the actual POST request is sent.
   if (request.method === 'OPTIONS') {
-    response.setHeader('Access-Control-Allow-Origin', 'https://eyux.vercel.app');
     response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return response.status(200).end();
   }
   // --- END: CORS Preflight Request Handling ---
-
-  // Set CORS header for the actual POST request
-  response.setHeader('Access-Control-Allow-Origin', 'https://eyux.vercel.app');
 
   // Handle the actual POST request
   if (request.method === 'POST') {
@@ -24,20 +28,19 @@ export default async function handler(request, response) {
       const id = conversationData.id;
 
       if (!id) {
-          return response.status(400).json({ message: 'Conversation ID is missing.' });
+        return response.status(400).json({ message: 'Conversation ID is missing.' });
       }
 
-      // Store the chat data using its original ID for 30 days
-      await kv.set(`chat:${id}`, conversationData, { ex: 2592000 }); 
+      await kv.set(`chat:${id}`, conversationData, { ex: 2592000 });
 
-      // Send back the ID that was used.
-      return response.status(200).json({ id: id });
+      return response.status(200).json({ id });
     } catch (error) {
       console.error(error);
-      return response.status(500).json({ message: 'An error occurred while creating the share link.' });
+      return response
+        .status(500)
+        .json({ message: 'An error occurred while creating the share link.' });
     }
   }
 
-  // If any other method is used, deny it.
   return response.status(405).json({ message: 'Method not allowed.' });
 }
