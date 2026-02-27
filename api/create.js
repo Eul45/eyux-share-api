@@ -1,17 +1,10 @@
 // File location: /api/create.js
 
-import { createClient } from '@vercel/kv';
-
-const kv = createClient({
-  url: process.env.NEW_DB_KV_URL,
-  token: process.env.NEW_DB_KV_REST_API_TOKEN,
-});
+import { kv } from '@vercel/kv';
 
 const allowedOrigins = [
   'https://eyux.vercel.app',
   'https://eyux.netlify.app',
-  'https://www.eyux.com.et',
-  'https://eyux.com.et',
 ];
 
 export default async function handler(request, response) {
