@@ -10,6 +10,8 @@ const kv = createClient({
 const allowedOrigins = [
   'https://eyux.vercel.app',
   'https://eyux.netlify.app',
+  'https://www.eyux.com.et',
+  'https://eyux.com.et',
 ];
 
 export default async function handler(request, response) {
